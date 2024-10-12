@@ -2,11 +2,13 @@ from tkinter import*
 from PIL import Image, ImageTk   #pip install pillow
 from customer import Cust_Win
 from room import Roombooking
+from details import DetailsRoom
+from report import report_window 
 
 class HotelManagementSystem: 
     def __init__(self, root):
         self.root=root
-        self.root.title("Hospital Management System")
+        self.root.title("Hotel Management System")
         self.root.geometry("1550x800+0+0")
            
       # =============1st img===============  
@@ -48,13 +50,13 @@ class HotelManagementSystem:
         room_btn= Button(btn_frame, text= "Room", command=self.roombooking, width=22 , font=("Montserrat",14),bg="#618264",fg="white",bd=0, cursor ="hand1")
         room_btn.grid(row=1,column=0, pady=1)
 
-        details_btn= Button(btn_frame, text= "Detail", width=22 , font=("Montserrat",14),bg="#618264",fg="white",bd=0, cursor ="hand1")
+        details_btn= Button(btn_frame, text= "Detail", width=22 ,command=self.details_room, font=("Montserrat",14),bg="#618264",fg="white",bd=0, cursor ="hand1")
         details_btn.grid(row=2,column=0, pady=1)
 
-        report_btn= Button(btn_frame, text= "Report", width=22 , font=("Montserrat",14),bg="#618264",fg="white",bd=0, cursor ="hand1")
+        report_btn= Button(btn_frame,command=self.show_report, text= "Report", width=22 , font=("Montserrat",14),bg="#618264",fg="white",bd=0, cursor ="hand1")
         report_btn.grid(row=3,column=0, pady=1)
 
-        logout_btn= Button(btn_frame, text= "Logout", width=22 , font=("Montserrat",14),bg="#618264",fg="white",bd=0, cursor ="hand1")
+        logout_btn= Button(btn_frame, command=self.logout,text= "Logout", width=22 , font=("Montserrat",14),bg="#618264",fg="white",bd=0, cursor ="hand1")
         logout_btn.grid(row=4,column=0, pady=1)
       # =============right img===================
 
@@ -89,6 +91,18 @@ class HotelManagementSystem:
     def roombooking(self):
       self.new_window = Toplevel(self.root)
       self.app = Roombooking(self.new_window)
+
+    def details_room(self):
+      self.new_window = Toplevel(self.root)
+      self.app = DetailsRoom(self.new_window)
+
+    def show_report(self):
+        report_window() 
+    
+
+    def logout(self):
+       self.root.destroy()
+
 
 
 if __name__ == "__main__":
